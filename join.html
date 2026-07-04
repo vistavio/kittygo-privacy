@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KittyGo – Join Trip</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #FAFAF8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px 32px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .emoji { font-size: 64px; margin-bottom: 16px; }
+    h1 { color: #1C1C1A; font-size: 22px; margin-bottom: 8px; }
+    p { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 24px; }
+    .btn {
+      display: block;
+      background: #8B7355;
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .btn-secondary {
+      display: block;
+      color: #8B7355;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      border: 1.5px solid #8B7355;
+    }
+    .note { font-size: 13px; color: #999; margin-top: 20px; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="emoji">🐱✈️</div>
+  <h1>You're invited to a trip!</h1>
+  <p>Open KittyGo to join your travel companions.</p>
+  <a id="openApp" class="btn" href="#">Open in KittyGo</a>
+  <p class="note">Don't have KittyGo? Download it from Google Play.</p>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code') || '';
+  const deepLink = 'kittygo://app/trips/join?code=' + encodeURIComponent(code);
+
+  document.getElementById('openApp').href = deepLink;
+
+  // Auto-redirect after short delay
+  setTimeout(() => {
+    window.location.href = deepLink;
+  }, 800);
+</script>
+</body>
+</html>
